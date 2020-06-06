@@ -614,7 +614,8 @@ class Instaloader:
 
         date_local = item.date_local
         dirname = _PostPathFormatter(item).format(self.dirname_pattern, target=target)
-        filename = dirname + '/' + self.format_filename(item, target=target)
+        timestamp = datetime.timestamp(item.expiring_utc)
+        filename = dirname + '/' + item.shortcode + ' [' +  str(timestamp) + ']'
         os.makedirs(os.path.dirname(filename), exist_ok=True)
         downloaded = False
         if not item.is_video or self.download_video_thumbnails is True:
@@ -973,7 +974,7 @@ class Instaloader:
                                                 target=profile.username), exist_ok=True)
         with open(self._get_id_filename(profile.username), 'w') as text_file:
             text_file.write(str(profile.userid) + "\n")
-            self.context.log("Stored ID {0} for profile {1}.".format(profile.userid, profile.username))
+            #self.context.log("Stored ID {0} for profile {1}.".format(profile.userid, profile.username))
 
     def check_profile_id(self, profile_name: str) -> Profile:
         """
