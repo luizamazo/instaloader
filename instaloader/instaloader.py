@@ -443,7 +443,7 @@ class Instaloader:
             filename = get_default_session_filename(username)
         with open(filename, 'rb') as sessionfile:
             self.context.load_session_from_file(username, sessionfile)
-            self.context.log("Loaded session from %s." % filename)
+            #self.context.log("Loaded session from %s." % filename)
 
     def test_login(self) -> Optional[str]:
         """Returns the Instagram username to which given :class:`requests.Session` object belongs, or None."""
